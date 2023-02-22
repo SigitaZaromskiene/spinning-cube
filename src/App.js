@@ -2,6 +2,8 @@ import { useState } from "react";
 import "./App.scss";
 import Square from "./components/Square";
 import randomColor from "./functions/RandomColor";
+import RandomNum from "./functions/RandomNum";
+import { v4 as uuidv4, v4 } from "uuid";
 
 function App() {
   const [addSq, setAddSq] = useState([]);
@@ -11,6 +13,8 @@ function App() {
   const [changeHi, setChangeHi] = useState("crimson");
   const [addWhite, setaddWhite] = useState([]);
   const [plusOne, setPlusOne] = useState(1);
+  const [randomNum, setRandomNum] = useState([]);
+  const [rotate, setRotate] = useState([]);
 
   const addSqHandler = () => {
     setAddSq((prev) => [...prev, 1]);
@@ -21,7 +25,10 @@ function App() {
   };
 
   const randomColorChangeHandler = () => {
-    setChangeToRandom((prev) => [...prev, { color: randomColor() }]);
+    setChangeToRandom((prev) => [
+      ...prev,
+      { id: uuidv4(), color: randomColor() },
+    ]);
   };
 
   const addOneWithNum = () => {
@@ -42,6 +49,14 @@ function App() {
 
   const minusOneHandler = () => {
     setPlusOne((prev) => prev - 1);
+  };
+
+  const addRandomNumHandler = () => {
+    setRandomNum((prev) => [...prev, { id: uuidv4() }]);
+  };
+
+  const rotateHandler = () => {
+    setRotate((prev) => [...prev, { id: uuidv4() }]);
   };
 
   return (
@@ -89,6 +104,12 @@ function App() {
           <button className="button" onClick={addWhiteHandler}>
             Add only white buttons
           </button>
+          <button className="button purple" onClick={addRandomNumHandler}>
+            Add random number
+          </button>
+          <button className="button orange" onClick={rotateHandler}>
+            Rotate every second
+          </button>
         </div>
         <div className="sq-container">
           {addSq.map((a, i) => (
@@ -101,7 +122,14 @@ function App() {
             <Square key={i} color={a} index={i + 1}></Square>
           ))}
           {addWhite.map((a, i) => (
-            <Square key={i} color={a}></Square>
+            <Square key={i} color={a} index={i}></Square>
+          ))}
+
+          {randomNum.map((a, i) => (
+            <Square key={i} color={a} index={RandomNum(5, 555)}></Square>
+          ))}
+          {rotate.map((a, i) => (
+            <Square rotateIndex={i} key={i} color={a}></Square>
           ))}
         </div>
       </header>

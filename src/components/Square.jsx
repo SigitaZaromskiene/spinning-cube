@@ -8,6 +8,7 @@ function Square(props) {
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
+        transform: props.rotateIndex % 2 === 0 ? "rotate(20deg)" : null,
       }}
     >
       {props.index}
