@@ -33,7 +33,7 @@ function App() {
   };
 
   const addOneWithNum = () => {
-    setaddSqWithNum((prev) => [...prev, 1]);
+    setaddSqWithNum((prev) => [...prev, { id: uuidv4() }]);
   };
 
   const changeHiColor = () => {
@@ -53,7 +53,10 @@ function App() {
   };
 
   const addRandomNumHandler = () => {
-    setRandomNum((prev) => [...prev, { id: uuidv4() }]);
+    setRandomNum((prev) => [
+      ...prev,
+      { id: uuidv4(), number: RandomNum(5, 555) },
+    ]);
   };
 
   const rotateHandler = () => {
@@ -126,17 +129,17 @@ function App() {
             <Square key={i} color={a}></Square>
           ))}
           {changeToRandom.map((a, i) => (
-            <Square key={i} color={a}></Square>
+            <Square key={a.id} color={a.color}></Square>
           ))}
           {addSqWithNum.map((a, i) => (
-            <Square key={i} color={a} index={i + 1}></Square>
+            <Square key={a.id} color={a} index={i + 1}></Square>
           ))}
           {addWhite.map((a, i) => (
             <Square key={i} color={a} index={i}></Square>
           ))}
 
           {randomNum.map((a, i) => (
-            <Square key={i} color={a} index={RandomNum(5, 555)}></Square>
+            <Square key={i} color={a} index={a.number}></Square>
           ))}
           {rotate.map((a, i) => (
             <Square rotateIndex={i} key={i} color={a}></Square>

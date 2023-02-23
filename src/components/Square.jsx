@@ -3,7 +3,7 @@ function Square(props) {
     <div
       className="sq"
       style={{
-        backgroundColor: props.color.color,
+        backgroundColor: props.color,
         fontSize: "42px",
         display: "flex",
         justifyContent: "center",
@@ -13,7 +13,6 @@ function Square(props) {
     >
       {props.index}
       {props.button}
-      {props.cloneBtn}
     </div>
   );
 }
