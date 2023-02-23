@@ -4,6 +4,7 @@ import Square from "./components/Square";
 import randomColor from "./functions/RandomColor";
 import RandomNum from "./functions/RandomNum";
 import { v4 as uuidv4, v4 } from "uuid";
+import SpinningBtn from "./components/SpinningBtn";
 
 function App() {
   const [addSq, setAddSq] = useState([]);
@@ -124,6 +125,7 @@ function App() {
             Add delete button
           </button>
         </div>
+        <SpinningBtn cl={"button"}></SpinningBtn>
         <div className="sq-container">
           {addSq.map((a, i) => (
             <Square key={i} color={a}></Square>
