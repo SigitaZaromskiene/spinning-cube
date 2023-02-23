@@ -68,6 +68,22 @@ function App() {
     setaddDelete((prev) => [...prev, { id: uuidv4() }]);
   };
 
+  const changeColorHandler = () => {
+    setAddSq((a) => a.map((a) => ({ ...a, color: randomColor() })));
+  };
+  const clearHandler = () => {
+    setAddSq([]);
+    setChangeToRed("yellow");
+    setChangeToRandom([]);
+    setaddDelete([]);
+    setPlusOne([]);
+    setRotate([]);
+    setaddWhite([]);
+    setaddSqWithNum([]);
+    setChangeHi(["crimson"]);
+    setRandomNum([]);
+  };
+
   const button = <button>Delete</button>;
 
   return (
@@ -124,11 +140,17 @@ function App() {
           <button className="button" onClick={addDeleteBtnHandler}>
             Add delete button
           </button>
+          <button className="button purple" onClick={changeColorHandler}>
+            Change color of add one
+          </button>
+          <button className="button" onClick={clearHandler}>
+            Clear
+          </button>
         </div>
         <SpinningBtn cl={"button"}></SpinningBtn>
         <div className="sq-container">
           {addSq.map((a, i) => (
-            <Square key={i} color={a}></Square>
+            <Square key={i} color={a.color}></Square>
           ))}
           {changeToRandom.map((a, i) => (
             <Square key={a.id} color={a.color}></Square>
@@ -137,7 +159,7 @@ function App() {
             <Square key={a.id} color={a} index={i + 1}></Square>
           ))}
           {addWhite.map((a, i) => (
-            <Square key={i} color={a} index={i}></Square>
+            <Square key={i} color={a.color} index={i}></Square>
           ))}
 
           {randomNum.map((a, i) => (
