@@ -79,6 +79,9 @@
     border: 1px solid black;
     border-radius: 5px;
   }
+  &.spin {
+    animation: App-logo-spin infinite 10s linear;
+  }
 }
 
 .flex {

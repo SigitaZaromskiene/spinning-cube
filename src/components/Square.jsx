@@ -12,6 +12,8 @@ function Square(props) {
       }}
     >
       {props.index}
+      {props.button}
+      {props.cloneBtn}
     </div>
   );
 }

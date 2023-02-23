@@ -15,6 +15,7 @@ function App() {
   const [plusOne, setPlusOne] = useState(1);
   const [randomNum, setRandomNum] = useState([]);
   const [rotate, setRotate] = useState([]);
+  const [addDelete, setaddDelete] = useState([]);
 
   const addSqHandler = () => {
     setAddSq((prev) => [...prev, 1]);
@@ -58,6 +59,12 @@ function App() {
   const rotateHandler = () => {
     setRotate((prev) => [...prev, { id: uuidv4() }]);
   };
+
+  const addDeleteBtnHandler = () => {
+    setaddDelete((prev) => [...prev, { id: uuidv4() }]);
+  };
+
+  const button = <button>Delete</button>;
 
   return (
     <div className="App">
@@ -110,6 +117,9 @@ function App() {
           <button className="button orange" onClick={rotateHandler}>
             Rotate every second
           </button>
+          <button className="button" onClick={addDeleteBtnHandler}>
+            Add delete button
+          </button>
         </div>
         <div className="sq-container">
           {addSq.map((a, i) => (
@@ -130,6 +140,9 @@ function App() {
           ))}
           {rotate.map((a, i) => (
             <Square rotateIndex={i} key={i} color={a}></Square>
+          ))}
+          {addDelete.map((a, i) => (
+            <Square key={i} color={a} button={button}></Square>
           ))}
         </div>
       </header>
